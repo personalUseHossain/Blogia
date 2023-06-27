@@ -1,0 +1,30 @@
+.contact{
+    display: grid;
+    place-items: center;
+    padding: 50px 0;
+    gap: 4rem;
+ }
+ .contact input{
+    padding: 7px;
+ }
+ .contact form{
+    display: grid;
+    place-items: center;
+ }
+ .contact input{
+    width: 29.5vw;
+ }
+ .name-email{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+ }
+ .contact textarea{
+    width: 60vw;
+    margin-top: 5px;
+ }
+ .contact form button{
+   padding: 7px;
+   justify-self: start;
+   margin-top: 10px;
+ }

@@ -1,0 +1,26 @@
+.login{
+    display: grid;
+    place-items: center;
+    gap: 5rem;
+}
+.login form{
+    display: grid;
+}
+.login form input{
+    width: 20rem;
+    padding: 7px;
+    margin-top: .5rem;
+}
+
+.login form button{
+    padding: 5px;
+    margin-top: .5rem;
+    background-color: rgb(115, 213, 213);
+    border-radius: 5px;
+    
+}
+@media (width < 583px) {
+    .login form input{
+        width: 70vw;
+    }
+}

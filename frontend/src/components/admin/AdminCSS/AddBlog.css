@@ -1,0 +1,44 @@
+
+.addblog-container{
+    display: grid;
+    place-items: center;
+    margin: 5rem 0;
+}
+.addblog-container h1{
+    color: black;
+}
+.addblog-container {
+    color: rgb(158, 165, 238);
+}
+
+.addblog-container input{
+    background: transparent;
+    border: none;
+    padding: 10px;
+    width: 40rem;
+    margin: 1rem;
+    color: black;
+    border: 1px solid black;
+}
+.addblog-container label{
+    display: grid;
+    margin: 20px;
+}
+
+.addblog-container textarea{
+    height: 20rem;
+    color: black;
+    background: transparent;
+    padding: 30px;
+    width: 80vw;
+}
+.addblog-container button{
+    padding: 7px;
+    background: greenyellow;
+    width: 5rem;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    grid-area: auto;
+    place-items: start;
+}
