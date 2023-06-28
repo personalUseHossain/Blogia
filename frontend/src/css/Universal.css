@@ -14,7 +14,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 a,
-i,
+.fa-solid,
 button,
 img{
     cursor: pointer;

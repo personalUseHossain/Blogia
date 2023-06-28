@@ -103,6 +103,26 @@ router.post('/contact/form', async (req, res) => {
 
 
 
+//comments in single blog section
+router.post('/comment', async (req, res) => {
+  const { singleBlog, comment, userData } = req.body;
+  const currentDate = new Date();
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const formattedDate = currentDate.toLocaleDateString('en-US', options);
+  const blog = await blogCollection.findByIdAndUpdate(singleBlog._id, {
+    $push: {
+      comments: {
+        _id: Math.floor(Math.random() * 10000),
+        name: `${userData.firstname} ${userData.lastname}`,
+        date: formattedDate,
+        comment: comment
+      }
+    }
+  });
+  await blog.save();
+  res.json(blog)
+})
+
 router.post('/updateBlog', async (req, res) => {
   const { id, singleBlog } = req.body;
   const singleBlogUpdate = await blogCollection.findByIdAndUpdate(id, {

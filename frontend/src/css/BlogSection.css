@@ -68,7 +68,16 @@ li{
 .sidebar .catalog ul li{
     padding: 10px 0;
 }
-
+.toggleBlogs{
+    display: none !important;
+    cursor: pointer;
+}
+.catalog button{
+    padding: 5px;
+    background-color: black;
+    color: white;
+    margin-left: 2px;
+}
 
 @media ( width < 1902px) {
     .blog img{
@@ -107,6 +116,17 @@ li{
     }
 }
 @media ( width < 564px) {
+    .toggleBlogs{
+        display: block !important;
+        position: fixed;
+        font-size: 25px;
+        right: 2rem;
+        top: 7rem;
+        background: whitesmoke;
+        padding: 10px;
+        border-radius: 50%;
+        z-index: 1000;
+    }
     .hero{
         width: 100vw;
         justify-items: center;
@@ -117,7 +137,13 @@ li{
     }
     .sidebar{
         align-self: center;
+        height: 100vh;
+        width: 100vw;
         margin-top: 0;
+        position: fixed;
+        left: -100%;
+        background-color: white;
+        transition: .8s;
     }
     .sidebar .catalog input{
         width: 81vw;

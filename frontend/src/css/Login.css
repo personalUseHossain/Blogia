@@ -2,9 +2,14 @@
     display: grid;
     place-items: center;
     gap: 5rem;
+    height: 30vw;
 }
 .login form{
     display: grid;
+    align-self: start;
+}
+.login h1{
+    align-self: end;
 }
 .login form input{
     width: 20rem;
@@ -17,7 +22,8 @@
     margin-top: .5rem;
     background-color: rgb(115, 213, 213);
     border-radius: 5px;
-    
+    width: 90%;
+    margin-left: 2rem;
 }
 @media (width < 583px) {
     .login form input{

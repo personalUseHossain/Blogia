@@ -56,6 +56,11 @@ const blogSchema = new mongoose.Schema({
         type: String,
         default: `${formattedDate}`
     }
+    ,
+    comments: {
+        type: Array,
+        default: [],
+    }
 })
 
 const contactSchema = new mongoose.Schema({

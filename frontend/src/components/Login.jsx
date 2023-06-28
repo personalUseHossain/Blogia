@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "universal-cookie";
 import "../css/Login.css";
 import { authContext } from "../App";
 
 export default function Login() {
-  const { setToken, setAdmin, isAdmin } = useContext(authContext);
+  const { setToken, setAdmin, setUserData } = useContext(authContext);
 
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -31,6 +33,7 @@ export default function Login() {
         body: JSON.stringify(user),
       });
       const data = await res.json();
+      console.log(data);
       if (data.error) {
         alert(data.error);
       }
@@ -41,12 +44,14 @@ export default function Login() {
         setToken(data.token);
         cookies.set("jwt", data.token);
         navigate("/blogs");
+        setUserData(data.checkUser);
       } else if (data.token) {
         setToken(data.token);
         cookies.set("jwt", data.token);
         window.alert("sucessfully login");
         setAdmin(false);
         navigate("/");
+        setUserData(data.checkUser);
       } else {
         window.alert("Invalid Data. Please try again");
       }
@@ -59,20 +64,32 @@ export default function Login() {
       <section className="login">
         <h1>Login</h1>
         <form>
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleInput}
-            placeholder="Enter Email.."
-          />
-          <input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleInput}
-            placeholder="Enter Password.."
-          />
+          <div className="input">
+            <FontAwesomeIcon
+              icon={faUser}
+              style={{ marginRight: "1rem", fontSize: "20px" }}
+            />
+            <input
+              type="email"
+              name="email"
+              value={user.email}
+              onChange={handleInput}
+              placeholder="Enter Email.."
+            />
+          </div>
+          <div className="input">
+            <FontAwesomeIcon
+              icon={faKey}
+              style={{ marginRight: "1rem", fontSize: "20px" }}
+            />
+            <input
+              type="password"
+              name="password"
+              value={user.password}
+              onChange={handleInput}
+              placeholder="Enter Password.."
+            />
+          </div>
           <button onClick={submitLogin}>Login</button>
         </form>
       </section>
