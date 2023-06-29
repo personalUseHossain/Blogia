@@ -4,7 +4,8 @@
 *{
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 1px;
+
 }
 
 body{
@@ -12,6 +13,8 @@ body{
     letter-spacing: 1px;
     font-family: 'Castoro Titling', cursive;
     font-family: 'Roboto', sans-serif;
+    color: var(--dark);
+    background-color: var(--white);
 }
 a,
 .fa-solid,
@@ -25,20 +28,12 @@ a{
 li{
     list-style: none;
 }
-input{
-    background-color: rgb(237, 241, 241);
-    border: 1px solid black;
-}
 button{
     padding: 7px;
-    border: 1px solid black;
 }
 
 /* Custom Variables */
 :root{
-    --white: #F2F2F2;
-    --light-white: #f4f6f6;
-    --dark: #333232;
-    --gray: #595959;
-    --hover:#07ab90;
+    --white: white;
+    --dark: black;
 }

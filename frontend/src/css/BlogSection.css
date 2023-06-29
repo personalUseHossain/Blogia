@@ -43,7 +43,7 @@ li{
     align-self: end;
 }
 .blog button a{
-    color: white;
+    color: var(--white);
     text-decoration: none;
 }
 .sidebar{
@@ -74,8 +74,8 @@ li{
 }
 .catalog button{
     padding: 5px;
-    background-color: black;
-    color: white;
+    background-color: var(--dark);
+    color: var(--white);
     margin-left: 2px;
 }
 
@@ -142,7 +142,7 @@ li{
         margin-top: 0;
         position: fixed;
         left: -100%;
-        background-color: white;
+        background-color: var(--white);
         transition: .8s;
     }
     .sidebar .catalog input{

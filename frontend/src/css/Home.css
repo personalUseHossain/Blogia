@@ -32,13 +32,14 @@ body{
     padding: 7px;
     width: 30vw;
     margin-top: 1rem;
-    border: 1px solid black;
-    background-color: transparent;
+    border: 1px solid var(--dark);
+    background-color: var(--white);
 }
 .subscribe button{
     padding: 7.5px;
-    background-color: var(--dark);
-    color: var(--white);
+    background-color: transparent;
+    color: var(--dark);
+    border: 1px solid var(--dark);
     margin-left: 2px;
     margin-top: 7px;
 }
@@ -79,7 +80,7 @@ body{
     position: sticky;
     z-index: 99;
     top: 7rem;
-    background-color: white;
+    background-color: var(--white);
 }
 .category ul{
     border-bottom: 1px solid gray;
@@ -94,7 +95,7 @@ body{
     margin-left: 3rem;
     gap: 3px;
     position: sticky;
-    background-color: white;
+    background-color: var(--white);
     height: 3rem;
     padding-bottom: 10px;
     width: 90vw;
@@ -102,14 +103,15 @@ body{
 }
 .search-section button{
     padding: 7px;
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: var(--dark);
+    border: 1px solid var(--dark);
 }
 .search-section input{
     width: 50vw;
     padding: 7px;
-    background: white;
-    border: 1px solid black;
+    background: var(--white);
+    border: 1px solid var(--dark);
 
 }
 .blog-container{
@@ -130,7 +132,7 @@ body{
     margin-top: 1rem;
 }
 .blog button{
-    background-color: transparent;
+    background-color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 0;
@@ -152,11 +154,12 @@ body{
 
 .loadMoreBTN{
     display: block;
-    margin: auto;
+    margin: 2rem auto;
     padding: 7px;
     border-radius: 10px;
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: var(--dark);
+    border: 1px solid var(--dark);
 }
 
 @media (max-width: 1448px) {

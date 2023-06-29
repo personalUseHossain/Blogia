@@ -13,6 +13,9 @@
  }
  .contact input{
     width: 29.5vw;
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--dark);
  }
  .name-email{
     display: flex;
@@ -22,6 +25,8 @@
  .contact textarea{
     width: 60vw;
     margin-top: 5px;
+    background-color: var(--white);
+    color: var(--dark);
  }
  .contact form button{
    padding: 7px;

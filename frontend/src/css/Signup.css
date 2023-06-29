@@ -12,7 +12,9 @@
 form input{
     padding: 7px;
     width: 20rem;
-
+    color: var(--dark);
+    background-color: var(--white);
+    border: 1px solid var(--dark);
 }
 form button{
     grid-area: 4;

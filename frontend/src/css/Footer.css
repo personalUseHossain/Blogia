@@ -5,7 +5,7 @@ footer{
 }
 .footer{
   width: 100vw;
-  background: #f0f0f0;
+  background: var(--white);
   height: 5rem;
   display: flex;
   justify-content: center;

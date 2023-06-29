@@ -1,6 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBarsStaggered,
+  faXmark,
+  faSun,
+  faMoon,
+} from "@fortawesome/free-solid-svg-icons";
 import "../css/Navbar.css";
 import { authContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +13,9 @@ import Cookies from "universal-cookie";
 import Logo from "/public/img/logo.png";
 
 export default function Navbar() {
+  const DarkRef = useRef(null);
+  const [darkMode, setDarkMode] = useState(false);
+  const [themeIcon, setThemeIcon] = useState(faSun);
   const navigate = useNavigate();
   const menu = useRef(null);
   const [icon, setIcon] = useState(faBarsStaggered);
@@ -35,6 +43,20 @@ export default function Navbar() {
     setIcon(faBarsStaggered);
     menu.current.style.left = "-100%";
     document.body.style.overflow = "auto";
+  }
+  function handleDarkToggle() {
+    if (themeIcon === faSun) {
+      setThemeIcon(faMoon);
+      setDarkMode(true);
+      document.documentElement.style.setProperty("--white", "black");
+      document.documentElement.style.setProperty("--dark", "white");
+    } else {
+      setThemeIcon(faSun);
+      setDarkMode(false);
+      document.body.classList.remove("dark");
+      document.documentElement.style.setProperty("--white", "white");
+      document.documentElement.style.setProperty("--dark", "black");
+    }
   }
   return (
     <>
@@ -123,6 +145,12 @@ export default function Navbar() {
                     <i className="fa-solid fa-bars-staggered"></i>
                 </div> */}
               <button onClick={handleLogout}>Log Out</button>
+              <FontAwesomeIcon
+                ref={DarkRef}
+                icon={themeIcon}
+                onClick={handleDarkToggle}
+                className="toggleDark"
+              />
             </div>
           </nav>
         </>
@@ -173,6 +201,12 @@ export default function Navbar() {
               <Link onClick={handleMenuClick} to={"/signup"}>
                 <button className="signup">SignUp</button>
               </Link>
+              <FontAwesomeIcon
+                ref={DarkRef}
+                icon={themeIcon}
+                onClick={handleDarkToggle}
+                className="toggleDark"
+              />
             </div>
           </nav>
         </>
