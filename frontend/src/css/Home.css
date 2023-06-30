@@ -121,15 +121,18 @@ body{
     grid-row-gap: 5rem;
     padding: 0 12px;
     grid-template-columns: repeat(3, 1fr);
-    
 }
 .blog{
     border-radius: 1rem;
     width: 27vw;
 }
+.blog .info{
+    margin-bottom: .5rem;
+}
 .blog h1{
     font-size: 1.5rem;
     margin-top: 1rem;
+    margin-bottom: .4rem;
 }
 .blog button{
     background-color: var(--white);
@@ -137,6 +140,7 @@ body{
     border-radius: 5px;
     padding: 0;
     transition: .2s;
+    margin-top: .5rem;
 }
 .blog button:hover{
     transform: translateX(5px);
@@ -144,7 +148,7 @@ body{
 .blog img{
     width: 90%;
 }
-.blog button img{
+.blog .arrow{
     width: 13px;
     margin: 0px 0 0 5px;
 }

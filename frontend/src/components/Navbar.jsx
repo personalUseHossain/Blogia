@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBarsStaggered,
@@ -14,7 +14,6 @@ import Logo from "/public/img/logo.png";
 
 export default function Navbar() {
   const DarkRef = useRef(null);
-  const [darkMode, setDarkMode] = useState(false);
   const [themeIcon, setThemeIcon] = useState(faSun);
   const navigate = useNavigate();
   const menu = useRef(null);
@@ -45,19 +44,25 @@ export default function Navbar() {
     document.body.style.overflow = "auto";
   }
   function handleDarkToggle() {
-    if (themeIcon === faSun) {
+    const Darkmode = cookies.get("Darkmode") || false;
+    var expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 30);
+    if (Darkmode === "false") {
       setThemeIcon(faMoon);
-      setDarkMode(true);
+      cookies.set("Darkmode", "true", { expires: expirationDate });
       document.documentElement.style.setProperty("--white", "black");
       document.documentElement.style.setProperty("--dark", "white");
     } else {
       setThemeIcon(faSun);
-      setDarkMode(false);
       document.body.classList.remove("dark");
+      cookies.set("Darkmode", "false", { expires: expirationDate });
       document.documentElement.style.setProperty("--white", "white");
       document.documentElement.style.setProperty("--dark", "black");
     }
   }
+  useEffect(() => {
+    handleDarkToggle();
+  }, []);
   return (
     <>
       {token !== undefined ? (

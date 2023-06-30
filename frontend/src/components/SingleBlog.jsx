@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { authContext } from "../App";
-import Alert from "./Alert";
 
 export default function SingleBlog() {
   const { token, userData } = useContext(authContext);
@@ -64,7 +63,7 @@ export default function SingleBlog() {
             <img className="singleBlogImg" src={singleBlog.img} alt="" />
             <h1>{singleBlog.heading}</h1>
             <p className="info">20 June 2023</p>
-            <p>{singleBlog.bigblog}</p>
+            <div dangerouslySetInnerHTML={{ __html: singleBlog.bigblog }}></div>
           </div>
 
           {singleBlog.comments ? (
@@ -124,7 +123,6 @@ export default function SingleBlog() {
         </>
       ) : (
         <>
-          <Alert txt="Please login first to read blogs" />
           <h1>Sorry you can't acess this page before login.</h1>
           <p>Navigating you to login page</p>
         </>

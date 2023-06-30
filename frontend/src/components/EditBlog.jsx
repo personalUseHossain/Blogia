@@ -69,6 +69,7 @@ export default function EditBlog() {
             <label>
               Blog
               <textarea
+                style={{ width: "50vw" }}
                 onChange={handleInput}
                 value={singleBlog.bigblog}
                 name="blog"

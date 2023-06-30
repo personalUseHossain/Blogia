@@ -3,6 +3,8 @@ import "../css/Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { authContext } from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const { isAdmin } = useContext(authContext);
@@ -105,6 +107,7 @@ export default function Home() {
               <div className="blog" key={blog._id}>
                 <img src={blog.img} alt="" />
                 <h1>{blog.heading}</h1>
+                <p className="info">{blog.date}</p>
                 <p>{blog.smallblog}</p>
                 {isAdmin ? (
                   <>
@@ -120,7 +123,10 @@ export default function Home() {
                     <Link to={`/blog/${blog._id}`}>
                       <button>
                         Read Post{" "}
-                        <img src="../public/img/arrow right.svg" alt="" />
+                        <FontAwesomeIcon
+                          className="arrow"
+                          icon={faArrowUpRightFromSquare}
+                        />
                       </button>
                     </Link>
                   </>

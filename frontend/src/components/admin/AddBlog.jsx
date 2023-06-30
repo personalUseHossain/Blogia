@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./AdminCSS/AddBlog.css";
-import { useNavigate } from "react-router-dom";
 import { authContext } from "../../App";
+import axios from "axios";
 
 export default function AddBlog() {
   const { isAdmin } = useContext(authContext);
-  const navigate = useNavigate();
   const [blogContent, setblogContent] = useState({
     heading: "",
     img: "",
@@ -17,23 +16,30 @@ export default function AddBlog() {
     name = e.target.name;
     value = e.target.value;
     setblogContent({ ...blogContent, [name]: value });
+    console.log(blogContent);
   }
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/admin/blog/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(blogContent),
-    });
-    setblogContent({
-      heading: "",
-      img: "",
-      blog: "",
-      category: "",
-    });
-    window.alert("Blog sucessfully added");
+    // const response = await fetch("http://localhost:5000/admin/blog/add", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(blogContent, blog),
+    // });
+    axios
+      .post("http://localhost:5000/admin/blog/add", { blogContent })
+      .then((res) => {
+        console.log(res.data);
+        setblogContent({
+          heading: "",
+          img: "",
+          blog: "",
+          category: "",
+        });
+        window.alert("Blog sucessfully added");
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <>
@@ -74,11 +80,10 @@ export default function AddBlog() {
             <label>
               Blog
               <textarea
-                onChange={handleInput}
-                value={blogContent.blog}
+                className="textarea"
                 name="blog"
-                cols="5"
-                rows="30"
+                value={blogContent.blog}
+                onChange={handleInput}
               ></textarea>
             </label>
             <button type="submit" onClick={handleSubmit}>

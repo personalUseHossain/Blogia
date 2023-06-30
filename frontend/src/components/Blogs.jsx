@@ -1,16 +1,22 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBarsStaggered,
+  faXmark,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import "../css/BlogSection.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { authContext } from "../App";
 import Cookies from "universal-cookie";
 
 export default function Blogs() {
+  const [loading, setLoading] = useState(false);
   const sideBar = useRef(null);
   const Scroll = useRef(0);
   const cookies = new Cookies();
+  const [allLoaded, setAllLoaded] = useState(false);
   const [icon, setIcon] = useState(faBarsStaggered);
   const { isAdmin } = useContext(authContext);
   const [blog, setBlog] = useState([]);
@@ -30,7 +36,12 @@ export default function Blogs() {
     fetchData();
   }, []);
   useEffect(() => {
-    window.addEventListener("scroll", handleInfiniteScroll);
+    if (allLoaded) {
+      setLoading(false);
+      window.removeEventListener("scroll", handleInfiniteScroll);
+    } else {
+      window.addEventListener("scroll", handleInfiniteScroll); // Add scroll event listener
+    }
     return () => {
       window.removeEventListener("scroll", handleInfiniteScroll);
     };
@@ -40,13 +51,23 @@ export default function Blogs() {
     Scroll.current = document.documentElement.scrollTop;
     try {
       if (
-        window.innerHeight + document.documentElement.scrollTop + 100 >=
+        window.innerHeight + document.documentElement.scrollTop + 500 >=
         document.documentElement.scrollHeight
       ) {
-        setlimit((prev) => prev + 2);
+        setLoading(true);
+        setlimit((prev) => prev + 10);
+        console.log(limit);
         axios
           .post("http://localhost:5000/blog", { route, limit })
-          .then((res) => setBlog(res.data))
+          .then((res) => {
+            if (blog.length === res.data.length) {
+              setAllLoaded(true);
+              setlimit(limit);
+            } else {
+              setBlog(res.data);
+              setLoading(false);
+            }
+          })
           .catch((err) => console.log(err));
       }
     } catch (err) {
@@ -123,7 +144,10 @@ export default function Blogs() {
                     <Link to={`/blog/${blog._id}`}>
                       <button>
                         Read Post{" "}
-                        <img src="../public/img/arrow right.svg" alt="" />
+                        <FontAwesomeIcon
+                          className="arrow"
+                          icon={faArrowUpRightFromSquare}
+                        />
                       </button>
                     </Link>
                   </>
@@ -131,6 +155,15 @@ export default function Blogs() {
               </div>
             );
           })}
+          {loading && (
+            <div className="loading-container">
+              <img
+                className="loading"
+                src="./public/img/loading_icon.gif"
+                alt=""
+              />
+            </div>
+          )}
         </div>
         <FontAwesomeIcon
           onClick={handleToggle}

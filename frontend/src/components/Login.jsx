@@ -33,6 +33,8 @@ export default function Login() {
         body: JSON.stringify(user),
       });
       const data = await res.json();
+      var expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 30);
       console.log(data);
       if (data.error) {
         alert(data.error);
@@ -40,14 +42,14 @@ export default function Login() {
       if (data.checkUser.admin) {
         window.alert("welcome admin");
         setAdmin(true);
-        cookies.set("isAdmin", true);
+        cookies.set("isAdmin", true, { expires: expirationDate });
         setToken(data.token);
-        cookies.set("jwt", data.token);
+        cookies.set("jwt", data.token, { expires: expirationDate });
         navigate("/blogs");
         setUserData(data.checkUser);
       } else if (data.token) {
         setToken(data.token);
-        cookies.set("jwt", data.token);
+        cookies.set("jwt", data.token, { expires: expirationDate });
         window.alert("sucessfully login");
         setAdmin(false);
         navigate("/");

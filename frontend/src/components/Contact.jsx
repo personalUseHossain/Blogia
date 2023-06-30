@@ -50,10 +50,6 @@ export default function Contact() {
   }
   return (
     <>
-      {/* <div className="location">
-      <h1>Meet me physically here...</h1>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d804.596449671072!2d90.36853064684077!3d23.786780047952703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c16bc2533cb9%3A0xb89a597f5da0e249!2sMizanur%20rahman!5e0!3m2!1sen!2sbd!4v1686833141736!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div> */}
       <div className="contact">
         <h1>
           Love to hear from you, <br />
@@ -95,6 +91,18 @@ export default function Contact() {
           </label>
           <button onClick={handleSubmit}>Send</button>
         </form>
+        <div className="map-container">
+          <h1>Contact me physically here...</h1>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d251.1431160270501!2d90.36801608117312!3d23.78693968398198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1688116894883!5m2!1sen!2sbd"
+            width="600"
+            height="450"
+            allowfullscreen=""
+            loading="lazy"
+            className="map"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
     </>
   );

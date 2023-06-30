@@ -78,7 +78,21 @@ li{
     color: var(--white);
     margin-left: 2px;
 }
-
+.loading-container{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+.loading{
+    width: 25rem;
+    position: sticky;
+    inset: 0;
+}
 @media ( width < 1902px) {
     .blog img{
         width: 26vw;

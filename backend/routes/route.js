@@ -572,7 +572,8 @@ router.post('/login', async (req, res) => {
 //adding blog
 router.post('/admin/blog/add', async (req, res) => {
   try {
-    const { heading, blog, img, category } = req.body;
+    const { blogContent } = req.body;
+    const { heading, img, category, blog } = blogContent
     const creatblog = await new blogCollection({
       img: img,
       heading: heading,
@@ -581,6 +582,7 @@ router.post('/admin/blog/add', async (req, res) => {
       category: category
     })
     const result = await creatblog.save();
+    res.json(result)
   } catch (err) {
     console.log(err)
   }
@@ -589,3 +591,4 @@ router.post('/admin/blog/add', async (req, res) => {
 
 
 module.exports = router;
+
