@@ -3,6 +3,7 @@ const router = express.Router();
 const { collection, blogCollection, ContactCollection } = require('../DataBase/schema')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const passport = require('passport')
 
 
 
@@ -559,6 +560,7 @@ router.post('/login', async (req, res) => {
 
 
 
+// auth
 
 
 
@@ -591,4 +593,6 @@ router.post('/admin/blog/add', async (req, res) => {
 
 
 module.exports = router;
+
+
 

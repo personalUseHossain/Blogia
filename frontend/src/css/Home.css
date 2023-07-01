@@ -112,6 +112,7 @@ body{
     padding: 7px;
     background: var(--white);
     border: 1px solid var(--dark);
+    color: var(--dark);
 
 }
 .blog-container{

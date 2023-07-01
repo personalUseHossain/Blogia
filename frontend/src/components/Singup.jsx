@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Signup.css";
 import axios from "axios";
+import { authContext } from "../App";
 
 export default function Singup() {
+  const { token } = useContext(authContext);
   const navigate = useNavigate();
   const [otp, setOtp] = useState(null);
   const [OPTINPUT, setOTPINPUT] = useState("");
@@ -14,6 +16,11 @@ export default function Singup() {
     password: "",
     confirmPass: "",
   });
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
   let inputname, value;
   const handleInput = (e) => {
     inputname = e.target.name;

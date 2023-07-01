@@ -2,14 +2,12 @@ const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
 const cors = require('cors');
-
 const cookieParser = require('cookie-parser');
 
 
 
 //getting user collection from db.js file
 const collection = require('./DataBase/schema');
-
 
 //MiddleWare
 
@@ -21,6 +19,8 @@ app.use(cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"]
 }))
 app.use(cookieParser());
+
+
 
 
 

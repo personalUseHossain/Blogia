@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import "../css/Login.css";
 import { authContext } from "../App";
 
 export default function Login() {
-  const { setToken, setAdmin, setUserData } = useContext(authContext);
+  const { token, setToken, setAdmin, setUserData } = useContext(authContext);
 
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -61,6 +61,12 @@ export default function Login() {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <section className="login">

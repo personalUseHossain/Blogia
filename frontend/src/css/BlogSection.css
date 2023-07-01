@@ -78,20 +78,12 @@ li{
     color: var(--white);
     margin-left: 2px;
 }
-.loading-container{
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
-}
+
 .loading{
-    width: 25rem;
-    position: sticky;
-    inset: 0;
+width: 8rem;
+margin: auto;
+display: block;
+
 }
 @media ( width < 1902px) {
     .blog img{
@@ -136,7 +128,8 @@ li{
         font-size: 25px;
         right: 2rem;
         top: 7rem;
-        background: whitesmoke;
+        background: var(--white);
+        color: var(--dark);
         padding: 10px;
         border-radius: 50%;
         z-index: 1000;

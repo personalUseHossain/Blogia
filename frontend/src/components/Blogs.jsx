@@ -38,6 +38,7 @@ export default function Blogs() {
   useEffect(() => {
     if (allLoaded) {
       setLoading(false);
+      console.log("all data loaded");
       window.removeEventListener("scroll", handleInfiniteScroll);
     } else {
       window.addEventListener("scroll", handleInfiniteScroll); // Add scroll event listener
@@ -48,15 +49,17 @@ export default function Blogs() {
   }, [limit]);
 
   async function handleInfiniteScroll() {
+    if (search === "") {
+      return;
+    }
     Scroll.current = document.documentElement.scrollTop;
     try {
       if (
         window.innerHeight + document.documentElement.scrollTop + 500 >=
         document.documentElement.scrollHeight
       ) {
-        setLoading(true);
         setlimit((prev) => prev + 10);
-        console.log(limit);
+        setLoading(true);
         axios
           .post("http://localhost:5000/blog", { route, limit })
           .then((res) => {
@@ -156,13 +159,14 @@ export default function Blogs() {
             );
           })}
           {loading && (
-            <div className="loading-container">
+            <>
               <img
                 className="loading"
                 src="./public/img/loading_icon.gif"
                 alt=""
               />
-            </div>
+              <h3 style={{ display: "block", margin: "auto" }}>Loading...</h3>
+            </>
           )}
         </div>
         <FontAwesomeIcon
@@ -176,9 +180,18 @@ export default function Blogs() {
             <input
               type="text"
               placeholder="Search Blog..."
-              onChange={(e) => searchBlog(e)}
+              onChange={(e) => {
+                searchBlog(e);
+              }}
             />
-            <button>Search</button>
+            <button
+              onClick={() => {
+                handleToggle();
+                setIcon(faBarsStaggered);
+              }}
+            >
+              Search
+            </button>
             <ul>
               <li
                 onClick={() => {
