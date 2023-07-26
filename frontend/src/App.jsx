@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import "./css/Universal.css";
 import Navbar from "./components/Navbar";
@@ -14,13 +14,14 @@ import { Route, Routes } from "react-router-dom";
 import SingleBlog from "./components/SingleBlog";
 import EditBlog from "./components/EditBlog";
 import DeleteBlog from "./components/DeleteBlog";
+import UpdateUserInfo from "./components/UpdateUserInfo";
 
 export const authContext = createContext();
 function App() {
   const cookies = new Cookies();
-  const [userData, setUserData] = useState([]);
   const [token, setToken] = useState(cookies.get("jwt"));
   const [isAdmin, setAdmin] = useState(cookies.get("isAdmin"));
+  const [userData, setUserData] = useState(cookies.get("userData") || []);
   return (
     <>
       <authContext.Provider
@@ -38,6 +39,7 @@ function App() {
           <Route path="/delete/:id" element={<DeleteBlog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Singup />} />
+          <Route path="/updateUserInfo" element={<UpdateUserInfo />} />
         </Routes>
         <Footer />
       </authContext.Provider>

@@ -7,7 +7,8 @@ import "../css/Login.css";
 import { authContext } from "../App";
 
 export default function Login() {
-  const { token, setToken, setAdmin, setUserData } = useContext(authContext);
+  const { token, setToken, setAdmin, userData, setUserData } =
+    useContext(authContext);
 
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -35,28 +36,18 @@ export default function Login() {
       const data = await res.json();
       var expirationDate = new Date();
       expirationDate.setDate(expirationDate.getDate() + 30);
-      console.log(data);
-      if (data.error) {
-        alert(data.error);
-      }
+      if (data.error) return alert(data.error);
       if (data.checkUser.admin) {
-        window.alert("welcome admin");
-        setAdmin(true);
         cookies.set("isAdmin", true, { expires: expirationDate });
-        setToken(data.token);
-        cookies.set("jwt", data.token, { expires: expirationDate });
-        navigate("/blogs");
-        setUserData(data.checkUser);
-      } else if (data.token) {
-        setToken(data.token);
-        cookies.set("jwt", data.token, { expires: expirationDate });
-        window.alert("sucessfully login");
-        setAdmin(false);
-        navigate("/");
-        setUserData(data.checkUser);
-      } else {
-        window.alert("Invalid Data. Please try again");
+        setAdmin(true);
       }
+      setUserData(data.checkUser);
+      setToken(data.token);
+      cookies.set("userData", data.checkUser);
+      cookies.set("jwt", data.token, { expires: expirationDate });
+      console.log(data.checkUser);
+      navigate("/");
+      alert("sucessfully logged in");
     } catch (err) {
       console.log(err);
     }

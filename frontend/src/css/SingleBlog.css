@@ -1,0 +1,89 @@
+.singleBlog > *:not(.singleBlog h1){
+    margin-bottom: 15px;
+}
+.singleBlog{
+    display: block;
+    margin: auto;
+    padding: 0 20px;
+    max-width: 85vw;
+}
+.singleBlog h1{
+    font-size: 25px;
+    margin-top: 2rem;
+}
+.singleBlog img{
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    margin:  auto;
+}
+.info{
+    color: rgb(200, 197, 197);
+    font-size: 13px;
+}
+.goback{
+    position: sticky;
+    top: 8rem;
+    left: 5rem;
+    border: none;
+    font-size: 25px;
+    height: 3rem;
+    width: 3rem;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* comment section */
+
+.comments{
+    display: grid;
+    place-items: center;
+    padding: 5rem 0;
+
+}
+.comment-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: end;
+    justify-self: center;
+    margin-bottom: 3rem;
+
+}
+.comment-input input{
+    padding: 10px;
+    width: 70vw;
+    margin-right: 3px;
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--dark);
+}
+.comment-input button{
+    background-color: transparent;
+    border: 1px solid var(--dark);
+    padding: 5px;
+    color: var(--dark);
+}
+.userImg{
+    width: 3rem;
+}
+.comment-input .comment-icon{
+    font-size: 25px;
+    margin: 0 10px;
+}
+.comment{
+    border: 1px solid gray;
+    width: 60vw;
+    padding: 10px;
+    margin-right: 11vw;
+    margin-bottom: 3rem;
+    padding: 20px;
+
+}
+.comment small{
+    font-size: 10px;
+    color: gray;
+}
+.comment p{
+    margin-top: 10px;
+}

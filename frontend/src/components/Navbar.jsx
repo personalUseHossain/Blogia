@@ -13,6 +13,7 @@ import Cookies from "universal-cookie";
 import Logo from "/public/img/logo.png";
 
 export default function Navbar() {
+  const { userData } = useContext(authContext);
   const DarkRef = useRef(null);
   const [themeIcon, setThemeIcon] = useState(faSun);
   const navigate = useNavigate();
@@ -116,40 +117,49 @@ export default function Navbar() {
                     </li>
                   </>
                 )}
-                {/* {isAdmin ? (
-                  <>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/blogs">Blogs</Link>
-                    </li>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/admin/addblog">Add Blog</Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/">Home</Link>
-                    </li>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/blogs">Blogs</Link>
-                    </li>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/contact">Contact</Link>
-                    </li>
-                    <li className="navbar-li">
-                      <Link onClick={handleMenuClick} to="/about">About</Link>
-                    </li>
-                  </>
-                )} */}
               </ul>
             </div>
 
             <div className="user-nav">
-              {/* <div className="user">
-                    <img className="user-img" src="./public/img/userImg.png" onerror="errimg()" />
-                    <i className="fa-solid fa-bars-staggered"></i>
-                </div> */}
-              <button onClick={handleLogout}>Log Out</button>
+              <img
+                onClick={() => {
+                  const user_menu = document.querySelector(".user-menu");
+                  if (user_menu.style.display === "none") {
+                    user_menu.style.display = "grid";
+                  } else {
+                    user_menu.style.display = "none";
+                  }
+                }}
+                src={
+                  userData.img
+                    ? `../public/uploads/${userData.img}`
+                    : "https://rb.gy/vz10c"
+                }
+                alt="User"
+              />
+
+              <div className="user-menu" style={{ display: "none" }}>
+                <div className="user-info">
+                  <img src={`../public/uploads/${userData.img}`} alt="404" />
+                  <h3>{`${userData.firstname}  ${userData.lastname}`}</h3>
+                </div>
+                <div className="button">
+                  <Link to={"/updateUserInfo"}>
+                    <button> Update Profile</button>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      cookies.remove("jwt");
+                      cookies.remove("isAdmin");
+                      cookies.remove("userData");
+                      window.location.reload(false);
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
               <FontAwesomeIcon
                 ref={DarkRef}
                 icon={themeIcon}

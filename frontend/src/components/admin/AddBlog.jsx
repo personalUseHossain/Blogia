@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import "./AdminCSS/AddBlog.css";
 import { authContext } from "../../App";
 import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 export default function AddBlog() {
   const { isAdmin } = useContext(authContext);
@@ -18,15 +20,10 @@ export default function AddBlog() {
     setblogContent({ ...blogContent, [name]: value });
     console.log(blogContent);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
-    // const response = await fetch("http://localhost:5000/admin/blog/add", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(blogContent, blog),
-    // });
+
     axios
       .post("http://localhost:5000/admin/blog/add", { blogContent })
       .then((res) => {
@@ -41,6 +38,7 @@ export default function AddBlog() {
       })
       .catch((err) => console.log(err));
   }
+
   return (
     <>
       {isAdmin ? (
@@ -101,7 +99,7 @@ export default function AddBlog() {
               height: "60vh",
             }}
           >
-            You're not allowed for this page
+            Restricted page.
           </h1>
         </>
       )}

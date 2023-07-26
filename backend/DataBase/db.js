@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.TEXT_DB_URL, {
+mongoose.connect(process.env.DataBase_Url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log('app is sucessfully connected with database'))

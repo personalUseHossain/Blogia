@@ -90,12 +90,13 @@ export default function SingleBlog() {
                 {singleBlog.comments.length > 0 ? (
                   <>
                     {singleBlog.comments.map((com) => {
+                      console.log(com.img);
                       return (
-                        <div className="comment" key={com.date}>
+                        <div className="comment" key={Date.now()}>
                           <img
                             className="userImg"
-                            src="../public/img/userImg.png"
-                            alt=""
+                            src={`../public/uploads/${com.img}`}
+                            alt="404"
                           />
                           <h3>{com.name}</h3>
                           <small>{com.date}</small>

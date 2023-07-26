@@ -3,7 +3,7 @@ const router = express.Router();
 const { collection, blogCollection, ContactCollection } = require('../DataBase/schema')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const passport = require('passport')
+const multer = require('multer');
 
 
 
@@ -103,6 +103,39 @@ router.post('/contact/form', async (req, res) => {
 })
 
 
+//update user profile
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../frontend/public/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+
+
+router.post('/updateUserProfile', upload.single('image'), async (req, res) => {
+
+  try {
+    const { userData, name } = req.query;
+    const firstname = name.split(' ')[0];
+    let words = name.split(' ');
+    let lastname = words.slice(1).join(' ');
+    const findUser = await collection.findByIdAndUpdate(userData._id, {
+      firstname,
+      lastname,
+      img: req.file.filename
+    }, { new: true });
+    res.status(200).json(findUser);
+  } catch (err) {
+    res.status(500).json({ error: "err" })
+  }
+})
+
+
 
 //comments in single blog section
 router.post('/comment', async (req, res) => {
@@ -115,6 +148,7 @@ router.post('/comment', async (req, res) => {
       comments: {
         _id: Math.floor(Math.random() * 10000),
         name: `${userData.firstname} ${userData.lastname}`,
+        img: userData.img,
         date: formattedDate,
         comment: comment
       }
@@ -547,10 +581,8 @@ router.post('/login', async (req, res) => {
     }
     if (checkUser && comparePass) {
       const token = jwt.sign({ id: checkUser._id }, process.env.JWT_SECREAT);
-      res.cookie('login_jwt', token, { httpOnly: true, secure: true })
       res.json({ token, checkUser })
     }
-
   } catch (err) {
     console.log(err)
   }
