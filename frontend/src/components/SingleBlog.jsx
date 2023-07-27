@@ -62,8 +62,11 @@ export default function SingleBlog() {
           <div className="singleBlog">
             <img className="singleBlogImg" src={singleBlog.img} alt="" />
             <h1>{singleBlog.heading}</h1>
-            <p className="info">20 June 2023</p>
-            <div dangerouslySetInnerHTML={{ __html: singleBlog.bigblog }}></div>
+            <p className="info">{singleBlog.date}</p>
+            <div
+              className="read-blog"
+              dangerouslySetInnerHTML={{ __html: singleBlog.bigblog }}
+            ></div>
           </div>
 
           {singleBlog.comments ? (

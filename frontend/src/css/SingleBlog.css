@@ -8,11 +8,12 @@
     max-width: 85vw;
 }
 .singleBlog h1{
-    font-size: 25px;
-    margin-top: 2rem;
+    font-size: 35px;
+    margin: 2rem 0 10px 0;
 }
 .singleBlog img{
     width: 100%;
+    max-width: 60rem;
     border-radius: 0;
     display: block;
     margin:  auto;
@@ -31,6 +32,23 @@
     width: 3rem;
     background-color: white;
     border-radius: 50%;
+}
+.read-blog{
+    display: grid;
+    gap: 1rem;
+    margin-top: 3rem;
+    font-size: 18px;
+    list-style: unset;
+}
+.read-blog li{
+    margin: 10px 0;
+    cursor: unset;
+}
+
+@media (width < 500px) {
+    .singleBlog h1{
+        font-size: 30px;
+    }
 }
 
 /* comment section */
@@ -66,6 +84,7 @@
 }
 .userImg{
     width: 3rem;
+    border-radius: 50%;
 }
 .comment-input .comment-icon{
     font-size: 25px;

@@ -43,13 +43,17 @@ router.post('/search/home', async (req, res) => {
 
 //post blog sorted
 router.post('/blog', async (req, res) => {
-  const { route, limit } = req.body;
-  if (route === '') {
-    const sortedBlogs = await blogCollection.find().limit(limit);
-    res.json(sortedBlogs)
-  } else {
-    const sortedBlogs = await blogCollection.find({ category: route }).limit(limit);
-    res.json(sortedBlogs)
+  try {
+    const { route, limit } = req.body;
+    if (route === '') {
+      const sortedBlogs = await blogCollection.find().limit(limit);
+      res.json(sortedBlogs)
+    } else {
+      const sortedBlogs = await blogCollection.find({ category: route }).limit(limit);
+      res.json(sortedBlogs)
+    }
+  } catch (err) {
+    res.json(err)
   }
 })
 
@@ -165,6 +169,7 @@ router.post('/updateBlog', async (req, res) => {
     heading: singleBlog.heading,
     bigblog: singleBlog.bigblog,
     category: singleBlog.category,
+    smallblog: singleBlog.smallblog,
   });
   res.json(singleBlogUpdate);
 })
@@ -607,11 +612,11 @@ router.post('/login', async (req, res) => {
 router.post('/admin/blog/add', async (req, res) => {
   try {
     const { blogContent } = req.body;
-    const { heading, img, category, blog } = blogContent
+    const { heading, smallHeading, img, category, blog } = blogContent
     const creatblog = await new blogCollection({
       img: img,
       heading: heading,
-      smallblog: blog.slice(0, 100) + '...',
+      smallblog: smallHeading + '...',
       bigblog: blog,
       category: category
     })

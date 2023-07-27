@@ -6,10 +6,7 @@ export default function About() {
     <>
       <section class="about-us">
         <div class="about">
-          <img
-            src="https://scontent.fdac147-1.fna.fbcdn.net/v/t39.30808-6/346613044_207977355362222_3255096733249580091_n.jpg?_nc_cat=109&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=fBnA8_PPLpgAX__blUn&_nc_ht=scontent.fdac147-1.fna&oh=00_AfCtTDyU2haI2XAJKIrdGIooLE-DHdLRM8juPkKedRGCMw&oe=64BF0DC7"
-            class="pic"
-          />
+          <img src="./public/img/my img.jpg" class="pic" />
           <div class="text">
             <h2>About Us</h2>
             <h5>

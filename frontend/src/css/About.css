@@ -8,6 +8,7 @@
 .pic{
   height: auto;
   width:  302px;
+  border-radius: 50%;
 }
 .about{
   width: 90vw;

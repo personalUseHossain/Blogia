@@ -18,7 +18,6 @@ export default function AddBlog() {
     name = e.target.name;
     value = e.target.value;
     setblogContent({ ...blogContent, [name]: value });
-    console.log(blogContent);
   }
 
   function handleSubmit(e) {
@@ -73,6 +72,16 @@ export default function AddBlog() {
                 value={blogContent.category}
                 placeholder="Blog category"
                 name="category"
+              />
+            </label>
+            <label>
+              Small Heading
+              <input
+                type="text"
+                onChange={handleInput}
+                value={blogContent.smallHeading}
+                placeholder="Small Heading"
+                name="smallHeading"
               />
             </label>
             <label>

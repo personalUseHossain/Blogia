@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "../css/Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -8,9 +8,11 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const { isAdmin } = useContext(authContext);
+  const lastScrollRef = useRef(0);
   const [homeBlog, setHomeBlog] = useState([]);
   const [search, setSearch] = useState("");
   const [loadedBlog, setloadedBlog] = useState(5);
+  const categorySectionRef = useRef(null);
   function fetchData() {
     let route = "";
     axios
@@ -56,6 +58,33 @@ export default function Home() {
   function LoadBlog() {
     setloadedBlog((prev) => prev + 10);
   }
+
+  //hiding and showing category section when scrolling
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollRef.current) {
+        setTimeout(() => {
+          categorySectionRef.current.style.transform = "translateX(-50rem)";
+        }, 300);
+      } else {
+        setTimeout(() => {
+          categorySectionRef.current.style.transform = "translateX(0)";
+        }, 300);
+      }
+
+      lastScrollRef.current = scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     axios
       .post("http://localhost:5000/home/loadmore", { loadedBlog, homeBlog })
@@ -79,7 +108,7 @@ export default function Home() {
         </form>
       </section>
       <section className="blogs">
-        <div className="category">
+        <div className="category" ref={categorySectionRef}>
           <ul>
             <li onClick={() => handleChangeBlog("")}>All</li>
             <li onClick={() => handleChangeBlog("technology")}>Technology</li>

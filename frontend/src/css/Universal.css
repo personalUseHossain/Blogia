@@ -5,7 +5,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    /* overflow-x: hidden; */
 }
 
 body{
@@ -25,11 +25,13 @@ img{
 a{
     text-decoration: none;
 }
-li{
-    list-style: none;
-}
+
 button{
     padding: 7px;
+    transition: .2s;
+}
+button:hover{
+    transform: scale(1.02);
 }
 
 /* Custom Variables */

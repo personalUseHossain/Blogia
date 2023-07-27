@@ -43,7 +43,7 @@ export default function Login() {
       }
       setUserData(data.checkUser);
       setToken(data.token);
-      cookies.set("userData", data.checkUser);
+      cookies.set("userData", data.checkUser, { expires: expirationDate });
       cookies.set("jwt", data.token, { expires: expirationDate });
       console.log(data.checkUser);
       navigate("/");

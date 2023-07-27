@@ -1,5 +1,5 @@
 .updateUserInfo{
-    background-color: white;
+    background-color: var(--white);
     width: 85vw;
     display: grid;
     align-items: center;

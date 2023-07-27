@@ -12,6 +12,8 @@ import { authContext } from "../App";
 import Cookies from "universal-cookie";
 
 export default function Blogs() {
+  const lastScrollRef = useRef(0);
+  const sidebarRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const sideBar = useRef(null);
   const Scroll = useRef(0);
@@ -38,7 +40,6 @@ export default function Blogs() {
   useEffect(() => {
     if (allLoaded) {
       setLoading(false);
-      console.log("all data loaded");
       window.removeEventListener("scroll", handleInfiniteScroll);
     } else {
       window.addEventListener("scroll", handleInfiniteScroll); // Add scroll event listener
@@ -49,13 +50,13 @@ export default function Blogs() {
   }, [limit]);
 
   async function handleInfiniteScroll() {
-    if (search === "") {
+    if (search !== "") {
       return;
     }
     Scroll.current = document.documentElement.scrollTop;
     try {
       if (
-        window.innerHeight + document.documentElement.scrollTop + 500 >=
+        window.innerHeight + document.documentElement.scrollTop + 200 >=
         document.documentElement.scrollHeight
       ) {
         setlimit((prev) => prev + 10);
@@ -119,6 +120,7 @@ export default function Blogs() {
     sideBar.current.style.left = "-100%";
     document.body.style.overflow = "auto";
   }
+
   return (
     <>
       <section className="hero-section">
@@ -133,6 +135,7 @@ export default function Blogs() {
                 <h1>{blog.heading}</h1>
                 <p className="info">{blog.date}</p>
                 <p>{blog.smallblog}</p>
+
                 {isAdmin ? (
                   <>
                     <Link to={`/edit/${blog._id}`}>
@@ -146,7 +149,7 @@ export default function Blogs() {
                   <>
                     <Link to={`/blog/${blog._id}`}>
                       <button>
-                        Read Post{" "}
+                        Read Post
                         <FontAwesomeIcon
                           className="arrow"
                           icon={faArrowUpRightFromSquare}
@@ -158,6 +161,7 @@ export default function Blogs() {
               </div>
             );
           })}
+
           {loading && (
             <>
               <img

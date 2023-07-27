@@ -23,6 +23,7 @@ export default function UpdateUserInfo() {
   const cookies = new Cookies();
   const [ImageUrl, setImageUrl] = useState(null);
   async function handleUpdateProfile() {
+    if (!ImageUrl) return alert("please select a profile image");
     try {
       const formData = new FormData();
       formData.append("image", ImageUrl);

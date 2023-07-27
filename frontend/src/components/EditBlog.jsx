@@ -67,12 +67,22 @@ export default function EditBlog() {
               />
             </label>
             <label>
+              Small Heading
+              <input
+                type="text"
+                onChange={handleInput}
+                value={singleBlog.smallblog}
+                placeholder="Small Heading"
+                name="smallblog"
+              />
+            </label>
+            <label>
               Blog
               <textarea
                 style={{ width: "50vw" }}
                 onChange={handleInput}
                 value={singleBlog.bigblog}
-                name="blog"
+                name="bigblog"
                 cols="5"
                 rows="30"
               ></textarea>

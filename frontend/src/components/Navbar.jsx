@@ -13,6 +13,8 @@ import Cookies from "universal-cookie";
 import Logo from "/public/img/logo.png";
 
 export default function Navbar() {
+  const lastScrollRef = useRef(0);
+  const navbarRef = useRef(null);
   const { userData } = useContext(authContext);
   const DarkRef = useRef(null);
   const [themeIcon, setThemeIcon] = useState(faSun);
@@ -61,6 +63,33 @@ export default function Navbar() {
       document.documentElement.style.setProperty("--dark", "black");
     }
   }
+
+  //hiding and showing navbar when scrolling
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollRef.current) {
+        setTimeout(() => {
+          navbarRef.current.style.transform = "translateY(-7rem)";
+        }, 300);
+      } else {
+        setTimeout(() => {
+          navbarRef.current.style.transform = "translateY(0)";
+        }, 300);
+      }
+
+      lastScrollRef.current = scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     handleDarkToggle();
   }, []);
@@ -68,7 +97,7 @@ export default function Navbar() {
     <>
       {token !== undefined ? (
         <>
-          <nav className="navbar">
+          <nav className="navbar" ref={navbarRef}>
             <div className="menu-logo">
               <Link onClick={handleMenuClick} to="/">
                 <img className="logo" src={Logo} alt="Logo" />
