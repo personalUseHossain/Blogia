@@ -1,16 +1,16 @@
 .login{
     display: grid;
     place-items: center;
+    justify-items: center;
     gap: 5rem;
-    height: 30vw;
+    margin-top: 5rem;
+    padding: 3rem;
 }
 .login form{
     display: grid;
     align-self: start;
 }
-.login h1{
-    align-self: end;
-}
+
 .login form input{
     width: 20rem;
     padding: 7px;

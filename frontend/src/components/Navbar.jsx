@@ -64,19 +64,28 @@ export default function Navbar() {
     }
   }
 
+  function toggleUserInfo() {
+    const user_menu = document.querySelector(".user-menu");
+    if (user_menu.style.display === "none") {
+      user_menu.style.display = "grid";
+    } else {
+      user_menu.style.display = "none";
+    }
+  }
+
   //hiding and showing navbar when scrolling
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop;
-
       if (scrollTop > lastScrollRef.current) {
         setTimeout(() => {
-          navbarRef.current.style.transform = "translateY(-7rem)";
+          document.querySelector(".navbar").style.transform =
+            "translateY(-7rem)";
         }, 300);
       } else {
         setTimeout(() => {
-          navbarRef.current.style.transform = "translateY(0)";
+          document.querySelector(".navbar").style.transform = "translateY(0)";
         }, 300);
       }
 
@@ -151,14 +160,7 @@ export default function Navbar() {
 
             <div className="user-nav">
               <img
-                onClick={() => {
-                  const user_menu = document.querySelector(".user-menu");
-                  if (user_menu.style.display === "none") {
-                    user_menu.style.display = "grid";
-                  } else {
-                    user_menu.style.display = "none";
-                  }
-                }}
+                onClick={toggleUserInfo}
                 src={
                   userData.img
                     ? `../public/uploads/${userData.img}`
@@ -168,6 +170,18 @@ export default function Navbar() {
               />
 
               <div className="user-menu" style={{ display: "none" }}>
+                <FontAwesomeIcon
+                  onClick={toggleUserInfo}
+                  icon={faXmark}
+                  style={{
+                    position: "absolute",
+                    top: "2rem",
+                    left: "2rem",
+                    fontSize: "25px",
+                    cursor: "pointer",
+                    padding: "10px",
+                  }}
+                />
                 <div className="user-info">
                   <img src={`../public/uploads/${userData.img}`} alt="404" />
                   <h3>{`${userData.firstname}  ${userData.lastname}`}</h3>

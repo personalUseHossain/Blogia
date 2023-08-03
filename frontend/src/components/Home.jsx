@@ -64,14 +64,13 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop;
-
       if (scrollTop > lastScrollRef.current) {
         setTimeout(() => {
-          categorySectionRef.current.style.transform = "translateX(-50rem)";
+          categorySectionRef.current.style.transform = "translateY(-50rem)";
         }, 300);
       } else {
         setTimeout(() => {
-          categorySectionRef.current.style.transform = "translateX(0)";
+          categorySectionRef.current.style.transform = "translateY(0)";
         }, 300);
       }
 
