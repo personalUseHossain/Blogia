@@ -7,7 +7,7 @@ export default function DeleteBlog() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .post(`http://localhost:5000/delete/${id}`, { id })
+      .post(`https://blogiabackend.onrender.com/delete/${id}`, { id })
       .then((res) => {
         setBlog(res.data);
         console.log(res.data);

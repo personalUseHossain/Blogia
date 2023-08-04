@@ -34,7 +34,7 @@ export default function Singup() {
       alert("Password and confirm password dosen't match");
     }
     try {
-      const data = await fetch("http://localhost:5000/register", {
+      const data = await fetch("https://blogiabackend.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,9 +131,12 @@ export default function Singup() {
               onClick={() => {
                 if (otp.toString() === OPTINPUT) {
                   axios
-                    .post("http://localhost:5000/register/optverify", {
-                      userData,
-                    })
+                    .post(
+                      "https://blogiabackend.onrender.com/register/optverify",
+                      {
+                        userData,
+                      }
+                    )
                     .then(() => {
                       alert("successfully user created");
                       navigate("/login");

@@ -9,14 +9,16 @@ export default function EditBlog() {
   const { id } = useParams();
   const { isAdmin } = useContext(authContext);
   useEffect(() => {
-    axios.post("http://localhost:5000/edit", { id }).then((res) => {
-      setSingleBlog(res.data);
-    });
+    axios
+      .post("https://blogiabackend.onrender.com/edit", { id })
+      .then((res) => {
+        setSingleBlog(res.data);
+      });
   }, []);
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/updateBlog", { id, singleBlog })
+      .post("https://blogiabackend.onrender.com/updateBlog", { id, singleBlog })
       .then((res) => {
         if (res.status === 200) {
           alert("sucessfully updated");
