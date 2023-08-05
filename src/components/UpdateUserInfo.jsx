@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../css/UpdateUserInfo.css";
+import FileBase64 from "react-file-base64";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
   faUser,
+  faIdCardClip,
   faImage,
 } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "universal-cookie";
@@ -25,12 +27,13 @@ export default function UpdateUserInfo() {
     try {
       const formData = new FormData();
       formData.append("image", ImageUrl);
+      delete userData.img;
       const requestData = {
         userData: userData,
         name: name,
       };
       const req = await axios.post(
-        "https://blogiabackend.onrender.com/updateUserProfile",
+        "http://localhost:5000/updateUserProfile",
         formData,
         {
           params: requestData,
@@ -49,7 +52,8 @@ export default function UpdateUserInfo() {
       console.log(err);
     }
   }
-  console.log(delete "./public/uploads/1691138207291my img.jpg");
+  console.log(userData);
+  console.log(ImageUrl);
   return (
     <div className="updateUserInfo">
       <h1>Update Your Details</h1>
