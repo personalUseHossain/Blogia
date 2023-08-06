@@ -24,7 +24,9 @@ export default function AddBlog() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/admin/blog/add", { blogContent })
+      .post("https://blogiabackend.onrender.com/admin/blog/add", {
+        blogContent,
+      })
       .then((res) => {
         console.log(res.data);
         setblogContent({

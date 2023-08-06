@@ -81,7 +81,7 @@ export default function Blogs() {
   const handleLinkClick = (route) => {
     setRoute(route);
     axios
-      .post("https://blogiabackend.onrender.com:5000/blog", { route, limit })
+      .post("https://blogiabackend.onrender.com/blog", { route, limit })
       .then((response) => {
         setBlog(response.data);
       })

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../css/UpdateUserInfo.css";
-import FileBase64 from "react-file-base64";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,7 +32,7 @@ export default function UpdateUserInfo() {
         name: name,
       };
       const req = await axios.post(
-        "https://blogia.onrender.com/updateUserInfo",
+        "https://blogiabackend.onrender.com/updateUserInfo/",
         formData,
         {
           params: requestData,
