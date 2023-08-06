@@ -10,7 +10,6 @@ import "../css/Navbar.css";
 import { authContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import Logo from "/public/img/logo.png";
 
 export default function Navbar() {
   const lastScrollRef = useRef(0);
@@ -24,8 +23,8 @@ export default function Navbar() {
   const cookies = new Cookies();
   const { token, setToken, isAdmin } = useContext(authContext);
   function handleLogout() {
-    cookies.remove("jwt", { path: "http://localhost:5173" });
-    cookies.remove("isAdmin", { path: "http://localhost:5173" });
+    cookies.remove("jwt", { path: "https://blogia.onrender.com" });
+    cookies.remove("isAdmin", { path: "https://blogia.onrender.com" });
     setToken(undefined);
     window.location.reload();
     navigate("/");
@@ -109,7 +108,11 @@ export default function Navbar() {
           <nav className="navbar" ref={navbarRef}>
             <div className="menu-logo">
               <Link onClick={handleMenuClick} to="/">
-                <img className="logo" src={Logo} alt="Logo" />
+                <img
+                  className="logo"
+                  src="https://cdn-icons-png.flaticon.com/512/60/60736.png"
+                  alt="Logo"
+                />
               </Link>
               <FontAwesomeIcon
                 onClick={handleToggle}

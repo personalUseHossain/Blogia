@@ -32,7 +32,7 @@ export default function UpdateUserInfo() {
         name: name,
       };
       const req = await axios.post(
-        "https://blogiabackend.onrender.com/updateUserInfo/",
+        "https://blogia.onrender.com/updateUserProfile",
         formData,
         {
           params: requestData,
