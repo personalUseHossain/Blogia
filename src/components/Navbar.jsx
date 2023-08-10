@@ -187,7 +187,7 @@ export default function Navbar() {
                 />
                 <div className="user-info">
                   <img
-                    src={`https://blogiabackend.onrender.com/UserImages/${userData.img}`}
+                    src={`http://localhost:5000/public/UserImages/${userData.img}`}
                     alt="404"
                   />
                   <h3>{`${userData.firstname}  ${userData.lastname}`}</h3>
@@ -223,7 +223,11 @@ export default function Navbar() {
           <nav className="navbar">
             <div className="menu-logo">
               <Link onClick={handleMenuClick} to="/">
-                <img className="logo" src="./public/img/logo.png" alt="Logo" />
+                <img
+                  className="logo"
+                  src="https://cdn-icons-png.flaticon.com/512/60/60736.png"
+                  alt="Logo"
+                />
               </Link>
               <FontAwesomeIcon
                 onClick={handleToggle}

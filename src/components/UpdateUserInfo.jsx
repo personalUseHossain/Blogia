@@ -26,13 +26,12 @@ export default function UpdateUserInfo() {
     try {
       const formData = new FormData();
       formData.append("image", ImageUrl);
-      delete userData.img;
       const requestData = {
         userData: userData,
         name: name,
       };
       const req = await axios.post(
-        "https://blogia.onrender.com/updateUserProfile",
+        "http://localhost:5000/updateUserProfile",
         formData,
         {
           params: requestData,
