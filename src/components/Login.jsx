@@ -42,9 +42,9 @@ export default function Login() {
         setAdmin(true);
       }
       setUserData(data.checkUser);
-      setToken(data.token);
       cookies.set("userData", data.checkUser, { expires: expirationDate });
       cookies.set("jwt", data.token, { expires: expirationDate });
+      setToken(data.token);
       console.log(data.checkUser);
       navigate("/");
       alert("sucessfully logged in");
