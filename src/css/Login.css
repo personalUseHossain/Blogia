@@ -1,0 +1,35 @@
+.login{
+    display: grid;
+    place-items: center;
+    justify-items: center;
+    gap: 5rem;
+    margin-top: 5rem;
+    padding: 3rem;
+}
+.login form{
+    display: grid;
+    align-self: start;
+}
+
+.login form input{
+    width: 20rem;
+    padding: 7px;
+    margin-top: .5rem;
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--dark);
+}
+
+.login form button{
+    padding: 5px;
+    margin-top: .5rem;
+    background-color: rgb(115, 213, 213);
+    border-radius: 5px;
+    width: 90%;
+    margin-left: 2rem;
+}
+@media (width < 583px) {
+    .login form input{
+        width: 70vw;
+    }
+}

@@ -1,0 +1,37 @@
+.signup{
+    display: grid;
+    place-items: center;
+    gap: 5rem;
+}
+.signup h1{
+    margin-top: 5rem;
+}
+.signup form{
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+form input{
+    padding: 7px;
+    width: 20rem;
+    color: var(--dark);
+    background-color: var(--white);
+    border: 1px solid var(--dark);
+    margin-top: 5px;
+}
+form button{
+    grid-area: 4;
+    padding: 5px;
+    place-self: start;
+    background-color: rgb(72, 214, 214);
+    border-radius: 5px;
+}
+@media (width < 715px) {
+    .signup form{
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+    form button{
+        grid-area: auto;
+    }
+}
