@@ -110,7 +110,7 @@ export default function Navbar() {
               <Link onClick={handleMenuClick} to="/">
                 <img
                   className="logo"
-                  src="https://cdn-icons-png.flaticon.com/512/60/60736.png"
+                  src="https://blogia.onrender.com/assets/logo-c3b88f5d.png"
                   alt="Logo"
                 />
               </Link>
@@ -164,11 +164,7 @@ export default function Navbar() {
             <div className="user-nav">
               <img
                 onClick={toggleUserInfo}
-                src={
-                  userData.img !== null
-                    ? `https://blogiabackend.onrender.com/public/${userData.img}`
-                    : "https://rb.gy/vz10c"
-                }
+                src={`https://blogiabackend.onrender.com/public/${userData.img}`}
                 alt="User"
               />
 
@@ -187,11 +183,7 @@ export default function Navbar() {
                 />
                 <div className="user-info">
                   <img
-                    src={
-                      userData.img !== null
-                        ? `https://blogiabackend.onrender.com/public/${userData.img}`
-                        : "https://rb.gy/vz10c"
-                    }
+                    src={`https://blogiabackend.onrender.com/public/${userData.img}`}
                     alt="User"
                   />
                   <h3>{`${userData.firstname}  ${userData.lastname}`}</h3>
@@ -229,7 +221,7 @@ export default function Navbar() {
               <Link onClick={handleMenuClick} to="/">
                 <img
                   className="logo"
-                  src="https://cdn-icons-png.flaticon.com/512/60/60736.png"
+                  src="https://blogia.onrender.com/assets/logo-c3b88f5d.png"
                   alt="Logo"
                 />
               </Link>
