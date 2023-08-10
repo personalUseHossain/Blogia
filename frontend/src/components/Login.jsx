@@ -26,7 +26,7 @@ export default function Login() {
   async function submitLogin(e) {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("https://blogiabackend.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,9 +42,9 @@ export default function Login() {
         setAdmin(true);
       }
       setUserData(data.checkUser);
-      setToken(data.token);
       cookies.set("userData", data.checkUser, { expires: expirationDate });
       cookies.set("jwt", data.token, { expires: expirationDate });
+      setToken(data.token);
       console.log(data.checkUser);
       navigate("/");
       alert("sucessfully logged in");

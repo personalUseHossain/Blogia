@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../css/UpdateUserInfo.css";
-import FileBase64 from "react-file-base64";
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +26,6 @@ export default function UpdateUserInfo() {
     try {
       const formData = new FormData();
       formData.append("image", ImageUrl);
-      delete userData.img;
       const requestData = {
         userData: userData,
         name: name,

@@ -16,7 +16,7 @@ export default function Home() {
   function fetchData() {
     let route = "";
     axios
-      .post("http://localhost:5000/home", { route, loadedBlog })
+      .post("https://blogiabackend.onrender.com/home", { route, loadedBlog })
       .then((res) => {
         setHomeBlog(res.data);
       })
@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
   function handleChangeBlog(route) {
     axios
-      .post("http://localhost:5000/home", { route, loadedBlog })
+      .post("https://blogiabackend.onrender.com/home", { route, loadedBlog })
       .then((res) => {
         setHomeBlog(res.data);
       })
@@ -42,7 +42,7 @@ export default function Home() {
   function searchBlog(e) {
     setSearch(e.target.value);
     axios
-      .post("http://localhost:5000/search/home", { search })
+      .post("https://blogiabackend.onrender.com/search/home", { search })
       .then((res) => {
         if (res.data.length === 0) {
           setHomeBlog([]);
@@ -86,7 +86,10 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/home/loadmore", { loadedBlog, homeBlog })
+      .post("https://blogiabackend.onrender.com/home/loadmore", {
+        loadedBlog,
+        homeBlog,
+      })
       .then((res) => {
         setHomeBlog(res.data);
       })

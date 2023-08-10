@@ -15,7 +15,7 @@ export default function SingleBlog() {
   const commentIput = useRef(null);
   function fetchsingleData() {
     axios
-      .post(`http://localhost:5000/blog/:id`, { id })
+      .post(`https://blogiabackend.onrender.com/blog/:id`, { id })
       .then((res) => {
         setsingleBlog(res.data);
       })
@@ -27,7 +27,7 @@ export default function SingleBlog() {
       alert("Please enter something on comment box");
     } else {
       axios
-        .post("http://localhost:5000/comment", {
+        .post("https://blogiabackend.onrender.com/comment", {
           singleBlog,
           comment,
           userData,

@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 
 
@@ -14,12 +15,14 @@ const collection = require('./DataBase/schema');
 app.use(express.json({ limit: '25mb' }))
 app.use(express.urlencoded({ extended: false, limit: '25mb' }))
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"]
 }))
 app.use(cookieParser());
-
+// const publicPath = path.join(__dirname, 'public');
+// const userImagePath = path.join(publicPath, 'UserImages')
+// app.use('/UserImages', express.static(userImagePath))
 
 
 

@@ -15,7 +15,7 @@ export default function Contact() {
   });
   function GetUserData() {
     axios
-      .post("http://localhost:5000/contact", { token })
+      .post("https://blogiabackend.onrender.com/contact", { token })
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
   }
@@ -36,7 +36,7 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/contact/form", { inputValue })
+      .post("https://blogiabackend.onrender.com/contact/form", { inputValue })
       .then((res) => {
         console.log(res);
         if (res.status === 200) {

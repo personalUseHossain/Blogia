@@ -4,9 +4,14 @@ const { collection, blogCollection, ContactCollection } = require('../DataBase/s
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
+const path = require('path')
 
+console.log(path.resolve())
 
-
+router.get('/public/:id', (req, res) => {
+  res.setHeader('Content-Type', 'image/*')
+  res.sendFile(path.resolve(`./public/UserImages/${req.params.id}`))
+})
 
 
 //post blog route to show all blogs on home page
@@ -108,13 +113,14 @@ router.post('/contact/form', async (req, res) => {
 
 
 //update user profile
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../frontend/public/uploads')
+    cb(null, path.resolve('./public/UserImages'))
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname)
+    cb(null, uniqueSuffix + 'userImage')
   }
 })
 
@@ -122,12 +128,21 @@ const upload = multer({ storage: storage })
 
 
 router.post('/updateUserProfile', upload.single('image'), async (req, res) => {
-
   try {
     const { userData, name } = req.query;
     const firstname = name.split(' ')[0];
     let words = name.split(' ');
     let lastname = words.slice(1).join(' ');
+    const fs = require('fs');
+    if (userData.img) {
+      fs.unlink(path.resolve(`./public/UserImages/${userData.img}`), (err) => {
+        if (err) {
+          console.error('Error while unlinking the file:', err);
+        } else {
+          console.log('File successfully unlinked.');
+        }
+      });
+    }
     const findUser = await collection.findByIdAndUpdate(userData._id, {
       firstname,
       lastname,
@@ -138,6 +153,9 @@ router.post('/updateUserProfile', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: "err" })
   }
 })
+
+
+
 
 
 
@@ -196,6 +214,9 @@ router.post('/delete/:id', async (req, res) => {
   const deleteBlog = await blogCollection.findByIdAndDelete(id);
   res.json(deleteBlog);
 })
+
+
+
 
 
 
