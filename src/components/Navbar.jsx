@@ -166,7 +166,7 @@ export default function Navbar() {
                 onClick={toggleUserInfo}
                 src={
                   userData.img
-                    ? `https://blogiabackend.onrender.com/UserImages/${userData.img}`
+                    ? `https://blogiabackend.onrender.com/public/${userData.img}`
                     : "https://rb.gy/vz10c"
                 }
                 alt="User"
@@ -187,7 +187,7 @@ export default function Navbar() {
                 />
                 <div className="user-info">
                   <img
-                    src={`http://localhost:5000/public/UserImages/${userData.img}`}
+                    src={`https://blogiabackend.onrender.com/public/${userData.img}`}
                     alt="404"
                   />
                   <h3>{`${userData.firstname}  ${userData.lastname}`}</h3>
